@@ -57,6 +57,38 @@ Route::post('/report/add',[AuthRegister::class,'RetortAdd']);
 
 Route::post('/buydata',[AuthRegister::class,'BuyData']);
 
+Route::post('/updateTovar',[AuthRegister::class,'updateTovar']);
+
+Route::post('/deletTovar',[AuthRegister::class,'deletTovar']);
+
+Route::post('/createTovar',[AuthRegister::class,'createTovar']);
+
+Route::post('/deletGenre',[AuthRegister::class,'deletGenre']);
+Route::post('/updateGenre',[AuthRegister::class,'updateGenre']);
+Route::post('/createGenre',[AuthRegister::class,'createGenre']);
+
+Route::post('/deletPublisher',[AuthRegister::class,'deletPublisher']);
+Route::post('/updatePublisher',[AuthRegister::class,'updatePublisher']);
+Route::post('/createPublisher',[AuthRegister::class,'createPublisher']);
+
+Route::post('/deletRegion',[AuthRegister::class,'deletRegion']);
+Route::post('/updateRegion',[AuthRegister::class,'updateRegion']);
+Route::post('/createRegion',[AuthRegister::class,'createRegion']);
+
+Route::post('/deletActivation',[AuthRegister::class,'deletActivation']);
+Route::post('/updateActivation',[AuthRegister::class,'updateActivation']);
+Route::post('/createActivation',[AuthRegister::class,'createActivation']);
+
+Route::post('/deletDeveloper',[AuthRegister::class,'deletDeveloper']);
+Route::post('/updateDeveloper',[AuthRegister::class,'updateDeveloper']);
+Route::post('/createDeveloper',[AuthRegister::class,'createDeveloper']);
+
+Route::post('/addImage',[AuthRegister::class,'addImage']);
+//отправка картинок
+
+Route::get('/allImage',[AuthRegister::class,'allImage']);
+
+
 Route::get('/basket/num/{token}', function($token){
     $user = Users::where('api_token',$token)->first();
 
@@ -88,15 +120,32 @@ Route::get('/all/tovars', function(){
             Tovar::find($elem)->TovarPublishers,
             Tovar::find($elem)->TovarRegion,
             Tovar::find($elem)->TovarActivation,
-            Tovar::find($elem)->TovarKey
+            Tovar::find($elem)->TovarKey,
+            Tovar::find($elem)->TovarImagePoster,
+            Tovar::find($elem)->TovarImageTreiler,
+            Tovar::find($elem)->TovarImageScrean
             ]);
     }
     return $tovar;
 });
 Route::get('/tovars', function(){
-	$tovars = Tovar::all();
+	$tovars = Tovar::OrderBy('rating','desc')->get();
 	return $tovars;
 });
+
+Route::get('/tovars/poster', function(){
+    $tovars = Tovar::OrderBy('rating','desc')->limit(6)->get();
+//    $test = Tovar::all()->TovarImagePoster;
+//    $tovars = Tovar::OrderBy('rating','desc')->limit(1)->TovarImagePoster[0]['urlImage'];
+    $test = [];
+    foreach ($tovars as $tovar){
+        array_push($test,[
+           $tovar->TovarImagePoster[0]['urlImage'],
+        ]);
+    }
+    return $test;
+});
+
 Route::get('/cupons', function(){
     $tovars = \App\Models\Cupon::all();
     return $tovars;

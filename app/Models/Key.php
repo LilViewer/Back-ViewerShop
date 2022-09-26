@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Key extends Model
 {
     use HasFactory;
+
+    protected $table='keys';
+
+    protected $fillable=[
+        'id',
+        'name',
+    ];
+    public $timestamps = false;
     public function KeyTovars(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Tovar::class,'tovar_key','id_key','id_tovar','id')->withPivot('id_tovar', 'id_key');;

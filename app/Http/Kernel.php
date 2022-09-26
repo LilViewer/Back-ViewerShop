@@ -39,11 +39,18 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'throttle'=>['throttle:99,1'],
+
+
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'throttle:5000,1', //These values did not change the throttle limit.
+//            'bindings',
         ],
+//        'api' => [
+//            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+//            'throttle:api',
+//            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+//        ],
     ];
 
     /**

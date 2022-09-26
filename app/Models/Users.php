@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     use HasFactory;
+
+
+
     public function UserTovars(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Tovar::class,'tovar_user','id_user','id_tovar','id')->withPivot('id_tovar', 'id_user');;

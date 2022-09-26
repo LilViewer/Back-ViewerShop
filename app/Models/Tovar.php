@@ -17,6 +17,19 @@ class Tovar extends Model
 //    /**
 //     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 //     */
+
+
+
+    function TovarImagePoster(){
+        return $this->hasMany(imagePoster::class,'id');
+    }
+    function TovarImageScrean(){
+        return $this->hasMany(imageScrean::class,'idTovar');
+    }
+    function TovarImageTreiler(){
+        return $this->hasMany(imageTreiler::class,'id');
+    }
+
     public function TovarGenres(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
 //        return $this->belongsToMany('App/Models/Genre');

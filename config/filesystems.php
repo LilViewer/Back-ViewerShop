@@ -42,6 +42,28 @@ return [
             'visibility' => 'public',
         ],
 
+        'TovarsPoster' => [
+            'driver' => 'local',
+            'root' => public_path('image_tovars/poster_tovar'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'TovarsTreiler' => [
+            'driver' => 'local',
+            'root' => public_path('image_tovars/treiler_tovar'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'TovarsScrean' => [
+            'driver' => 'local',
+            'root' => public_path('image_tovars/screan_tovar'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
